@@ -5,6 +5,7 @@
  */
 package iwander;
 
+import iwander.Database.Connect;
 import iwander.View.MainUI;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

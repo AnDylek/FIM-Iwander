@@ -17,9 +17,10 @@ import java.text.SimpleDateFormat;
 public class VyhledaniLetu extends Connect{
 
     public VyhledaniLetu(Connection conn, Statement stmt) {
-        super(conn, stmt);
+        super();
     }
     public void vyhledej(String odkud, String kam, SimpleDateFormat sdf){
+        Statement stmtVyhledej;
         
     }
 

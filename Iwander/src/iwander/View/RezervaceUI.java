@@ -5,12 +5,16 @@
  */
 package iwander.View;
 
+import iwander.Database.Connect;
+import iwander.Model.VyhledaniLetu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,9 +55,14 @@ public class RezervaceUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Letiste Vaclava Havla", "Mezinarodni letiste Katowice", "Tempelhof", "Mezinarodni letiste Miami", "Mezinarodni letiste Rio de Janeiro-Galeao", "Mezinarodni letiste Cagliari", "Letiste Rijeka", "Letiste Narita", "Letiste Bratislava", "Letiste Joma Kenyattana" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Letiste Vaclava Havla", "Mezinarodni letiste Katowice", "Tempelhof", "Mezinarodni letiste Miami", "Mezinarodni letiste Rio de Janeiro-Galeao", "Mezinarodni letiste Cagliari", "Letiste Rijeka", "Letiste Narita", "Letiste Bratislava", "Letiste Joma Kenyattana" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Odkud:");
@@ -129,7 +138,7 @@ public class RezervaceUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox2, 0, 0, Short.MAX_VALUE)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jCheckBox1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,8 +219,17 @@ public class RezervaceUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2FocusGained
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+        String odkud = (String) jComboBox1.getSelectedItem();
+        System.out.println((String) jComboBox1.getSelectedItem());
+        Connect connect = new Connect();
+        String vyhledaniLetu = connect.vyhledaniLetu(odkud);
+        System.out.println(vyhledaniLetu);
+        JOptionPane.showMessageDialog(null, vyhledaniLetu, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

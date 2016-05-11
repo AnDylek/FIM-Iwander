@@ -35,7 +35,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jComboBox2" max="32767" attributes="0"/>
+                              <Component id="jComboBox2" pref="0" max="32767" attributes="0"/>
                               <Component id="jComboBox1" min="-2" pref="188" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
@@ -97,14 +97,23 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="10">
+            <StringItem index="0" value="Letiste Vaclava Havla"/>
+            <StringItem index="1" value="Mezinarodni letiste Katowice"/>
+            <StringItem index="2" value="Tempelhof"/>
+            <StringItem index="3" value="Mezinarodni letiste Miami"/>
+            <StringItem index="4" value="Mezinarodni letiste Rio de Janeiro-Galeao"/>
+            <StringItem index="5" value="Mezinarodni letiste Cagliari"/>
+            <StringItem index="6" value="Letiste Rijeka"/>
+            <StringItem index="7" value="Letiste Narita"/>
+            <StringItem index="8" value="Letiste Bratislava"/>
+            <StringItem index="9" value="Letiste Joma Kenyattana"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -112,11 +121,17 @@
     <Component class="javax.swing.JComboBox" name="jComboBox2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="10">
+            <StringItem index="0" value="Letiste Vaclava Havla"/>
+            <StringItem index="1" value="Mezinarodni letiste Katowice"/>
+            <StringItem index="2" value="Tempelhof"/>
+            <StringItem index="3" value="Mezinarodni letiste Miami"/>
+            <StringItem index="4" value="Mezinarodni letiste Rio de Janeiro-Galeao"/>
+            <StringItem index="5" value="Mezinarodni letiste Cagliari"/>
+            <StringItem index="6" value="Letiste Rijeka"/>
+            <StringItem index="7" value="Letiste Narita"/>
+            <StringItem index="8" value="Letiste Bratislava"/>
+            <StringItem index="9" value="Letiste Joma Kenyattana"/>
           </StringArray>
         </Property>
       </Properties>

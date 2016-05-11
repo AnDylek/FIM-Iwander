@@ -6,6 +6,9 @@
 package iwander.Database;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,40 +17,42 @@ import java.sql.*;
 public class Connect {
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/EMP";
-    static final String USER = "username";
-    static final String PASS = "password";
+    static final String DB_URL = "jdbc:mysql://db4free.net/iwander";
+    static final String USER = "pilot";
+    static final String PASS = "letiště";
 
-    public Connect(Connection conn, Statement stmt) {
+    public Connect() {
+        Connection conn = null;
+        Statement stmt = null;
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
+/*
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT id, first, last, age FROM Employees";
+            sql = "SELECT * FROM Airport";
             ResultSet rs = stmt.executeQuery(sql);
 
             //STEP 5: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                int id = rs.getInt("id");
-                int age = rs.getInt("age");
-                String first = rs.getString("first");
-                String last = rs.getString("last");
+                String iata = rs.getString("IATA");
+                String icao = rs.getString("ICAO");
+                String name = rs.getString("Name");
+                String airportid = rs.getString("AirportID");
 
                 //Display values
-                System.out.print("ID: " + id);
-                System.out.print(", Age: " + age);
-                System.out.print(", First: " + first);
-                System.out.println(", Last: " + last);
-            }
+                System.out.print("IATA: " + iata);
+                System.out.print(", ICAO: " + icao);
+                System.out.print(", Name: " + name);
+                System.out.println(", AirportID: " + airportid);
+            }*/
             //STEP 6: Clean-up environment
-            rs.close();
+            
             stmt.close();
             conn.close();
         } catch (SQLException se) {
@@ -74,4 +79,45 @@ public class Connect {
         }//end try
         System.out.println("Goodbye!");
     }
+    public String vyhledaniLetu(String odkud){
+        Connection conn = null;
+        Statement stmt = null;
+        String vysledek = "";
+        String kam = odkud;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            stmt = DriverManager.getConnection(DB_URL, USER, PASS).createStatement();
+            String sql;
+            sql = "Select * from Airport where name = '" + kam + "'";
+            System.out.println("SQL: "  +sql);
+            
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                //Retrieve by column name
+                String iata = rs.getString("IATA");
+                String icao = rs.getString("ICAO");
+                String name = rs.getString("Name");
+                String airportid = rs.getString("AirportID");
+
+                //Display values
+                System.out.print("IATA: " + iata);
+                System.out.print(", ICAO: " + icao);
+                System.out.print(", Name: " + name);
+                System.out.println(", AirportID: " + airportid);
+                vysledek += "\n Název letiště je: " + name + " s ID: " + airportid;
+            }
+            rs.close();
+            stmt.close();
+            DriverManager.getConnection(DB_URL, USER, PASS).close();
+            return vysledek;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
 }
+        
+
