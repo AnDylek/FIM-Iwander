@@ -5,8 +5,10 @@
  */
 package iwander.Database;
 
+import java.awt.List;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +32,7 @@ public class Connect {
 
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-/*
+            /*
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
@@ -52,7 +54,7 @@ public class Connect {
                 System.out.println(", AirportID: " + airportid);
             }*/
             //STEP 6: Clean-up environment
-            
+
             stmt.close();
             conn.close();
         } catch (SQLException se) {
@@ -79,7 +81,8 @@ public class Connect {
         }//end try
         System.out.println("Goodbye!");
     }
-    public String vyhledaniLetu(String odkud){
+
+    public String vyhledaniLetu(String odkud) {
         Connection conn = null;
         Statement stmt = null;
         String vysledek = "";
@@ -89,10 +92,10 @@ public class Connect {
             stmt = DriverManager.getConnection(DB_URL, USER, PASS).createStatement();
             String sql;
             sql = "Select * from Airport where name = '" + kam + "'";
-            System.out.println("SQL: "  +sql);
-            
+            System.out.println("SQL: " + sql);
+
             ResultSet rs = stmt.executeQuery(sql);
-            
+
             while (rs.next()) {
                 //Retrieve by column name
                 String iata = rs.getString("IATA");
@@ -111,13 +114,68 @@ public class Connect {
             stmt.close();
             DriverManager.getConnection(DB_URL, USER, PASS).close();
             return vysledek;
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-}
-        
 
+    public ArrayList getAirport() {
+        ArrayList list = new ArrayList();
+            int index = 0;
+        try {
+            
+            Connection conn = null;
+            Statement stmt = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            stmt = DriverManager.getConnection(DB_URL, USER, PASS).createStatement();
+            String sql;
+            sql = "Select name from Airport";
+            System.out.println("SQL: " + sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                //Retrieve by column name
+                String name = rs.getString("Name");         
+                list.add(index, name);
+                index ++;
+            }
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public ArrayList getCity() {
+        ArrayList list = new ArrayList();
+            int index = 0;
+        try {
+            Connection conn = null;
+            Statement stmt = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            stmt = DriverManager.getConnection(DB_URL, USER, PASS).createStatement();
+            String sql;
+            sql = "Select Name from City";
+            System.out.println("SQL: " + sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                //Retrieve by column name
+                String name = rs.getString("Name");         
+                list.add(index, name);
+                index ++;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             return list;
+    
+
+
+}
+}
