@@ -5,6 +5,10 @@
  */
 package iwander;
 
+import iwander.View.MainUI;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author AnDylek
@@ -16,6 +20,10 @@ public class Iwander {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        SwingUtilities.invokeLater(() -> {
+            MainUI mainUI = new MainUI();
+            mainUI.setVisible(true);
+        });
     }
     
 }
