@@ -235,6 +235,9 @@ public class RezervaceUI extends javax.swing.JFrame {
         String vyhledaniLetu = connect.vyhledaniLetu(odkud);
         System.out.println(vyhledaniLetu);
         JOptionPane.showMessageDialog(null, vyhledaniLetu, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+        Rezervace r = new Rezervace("Z " + jComboBox1.getSelectedItem().toString() + " do " + jComboBox2.getSelectedItem().toString());
+        r.setVisible(true);
+        
         /*
         String vysledek = "'Vyberte destinaci'";
         ArrayList a = connect.getAirport();
